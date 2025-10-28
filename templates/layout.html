@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}" />
+    <meta name="keywords" content="{{keywords}}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="{{title}}" />
+    <meta property="twitter:description" content="{{description}}" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- 字体和图标 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+    />
+
+    <!-- 样式表 -->
+    <link rel="stylesheet" href="/styles.css" />
+
+    <script>
+      // 初始化数据
+      window.CHAPTERS_DATA = {{ chaptersData }};
+      window.CURRENT_INDEX = {{ currentIndex }};
+      window.SITE_INFO = {{ siteInfo }};
+      window.IS_HOME = {{ isHome }};
+    </script>
+  </head>
+
+  <body>
+    <!-- 加载动画 -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-spinner">
+        <div class="loading-icon">
+          <i class="ri-book-open-line"></i>
+        </div>
+        <div class="loading-text">正在加载...</div>
+      </div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="page-container">
+      <div id="pagesWrapper" class="pages-wrapper">{{content}}</div>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav id="bottomNav" class="bottom-navigation" style="display: none">
+      <div class="nav-left">
+        <button id="homeBtn" class="nav-btn" title="首页">
+          <i class="ri-home-line"></i>
+        </button>
+        <button id="tocBtn" class="nav-btn" title="目录">
+          <i class="ri-list-check"></i>
+        </button>
+        <button id="themeToggle" class="theme-toggle" title="切换主题">
+          <i class="ri-sun-line"></i>
+          <i class="ri-moon-line"></i>
+        </button>
+        <button id="copyrightBtn" class="nav-btn" title="版权信息">
+          <i class="ri-information-line"></i>
+        </button>
+      </div>
+      <div class="nav-right">
+        <button id="prevBtn" class="nav-btn" title="上一页">
+          <i class="ri-arrow-left-s-line"></i>
+        </button>
+        <span id="pageInfo" class="page-info">1 / 1</span>
+        <button id="nextBtn" class="nav-btn" title="下一页">
+          <i class="ri-arrow-right-s-line"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 目录弹框 -->
+    <div id="tocModal" class="modal-overlay">
+      <div class="modal-content toc-modal">
+        <div class="modal-header">
+          <h3>目录</h3>
+          <button id="tocModalClose" class="modal-close">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="tocGrid" class="toc-grid">
+            <!-- 目录项将通过 JavaScript 动态生成 -->
+          </div>
+          <div id="tocPagination" class="toc-pagination">
+            <!-- 分页控件将通过 JavaScript 动态生成 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 版权信息弹框 -->
+    <div id="copyrightModal" class="modal-overlay">
+      <div class="modal-content copyright-modal">
+        <div class="modal-header">
+          <h3>版权信息</h3>
+          <button id="copyrightModalClose" class="modal-close">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="copyright-content">
+            <div class="copyright-section">
+              <h4>版权声明</h4>
+              <p>
+                本站所有文字内容均为原创作品，受版权法保护，禁止转载、改编、演绎、分发或任何形式的未授权使用。
+              </p>
+              <p>如需合作、授权或其他商业用途，请通过邮箱联系。</p>
+            </div>
+            <div class="copyright-section">
+              <h4>Copyright Notice</h4>
+              <p>
+                All written content on this site is original work, protected by
+                copyright law. Reproduction, adaptation, derivative works,
+                distribution, or any unauthorized use is strictly prohibited.
+              </p>
+              <p>
+                For collaboration, licensing, or commercial use inquiries,
+                please contact via email.
+              </p>
+            </div>
+            <div class="copyright-section">
+              <h4>联系方式</h4>
+              <p><span id="copyrightEmail">xuesong@fylsen.com</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="/script.js"></script>
+    <script>
+      const memoryBook = new MemoryBook();
+
+      // 首页开始阅读按钮
+      const startBtn = document.getElementById("startReading");
+      if (startBtn) {
+        startBtn.addEventListener("click", () => memoryBook.startReading());
+      }
+
+      // 更新版权信息
+      document.getElementById("copyrightAuthor").textContent =
+        window.SITE_INFO.author || "";
+    </script>
+  </body>
+</html>

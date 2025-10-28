@@ -1,0 +1,39 @@
+{
+  "siteInfo": {
+    "title": "Fili",
+    "subtitle": "Book",
+    "author": "Cedaric",
+    "email": "xuesong@fylsen.com",
+    "description": "",
+    "keywords": "",
+    "favicon": "favicon.png",
+    "other": "随便写",
+    "url": "https://example.me"
+  },
+  "prefaces": ["preface.md"],
+  "chapters": ["example.md"],
+  "epilogues": ["epilogue.md"],
+  "pages": [
+    {
+      "name": "Page With Password",
+      "title": "加密页面",
+      "markdownFile": "content/pagewithpassword.md",
+      "musicFile": "static/Fiction.mp3",
+      "musicLabel": "Fiction - Azuria Sky && Adib Sin",
+      "password": "123456",
+      "useMarkdownTitle": true,
+      "showBackToTop": true,
+      "backToTopOffset": 300
+    },
+    {
+      "name": "Page",
+      "title": " 公开页面",
+      "markdownFile": "content/page.md",
+      "musicFile": "static/Fiction.mp3",
+      "musicLabel": "Fiction - Azuria Sky && Adib Sin",
+      "useMarkdownTitle": false,
+      "showBackToTop": true,
+      "backToTopOffset": 300
+    }
+  ]
+}

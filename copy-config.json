@@ -1,0 +1,20 @@
+{
+  "directories": [
+    "page",
+    "static",
+    "assets"
+  ],
+  "files": [
+    "favicon.png",
+    "robots.txt",
+    "sitemap.xml"
+  ],
+  "clean": false,
+  "exclude": [
+    ".DS_Store",
+    "Thumbs.db",
+    ".git",
+    "node_modules",
+    ".vscode"
+  ]
+}

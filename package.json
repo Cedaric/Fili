@@ -1,0 +1,27 @@
+{
+  "name": "Fili",
+  "author": "Cedaric",
+  "version": "0.0.1",
+  "description": "Fili",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js && node copy-assets.js && node buildPages.js && node generate-sitemap.js",
+    "buildPages": "node buildPages.js",
+    "sitemap": "node generate-sitemap.js",
+    "copy": "node copy-assets.js",
+    "dev": "npx serve dist",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1",
+    "markdown-it": "^13.0.1"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.2",
+    "html-minifier-terser": "^7.2.0",
+    "prettier": "^3.6.2",
+    "serve": "^14.2.5",
+    "terser": "^5.19.2"
+  }
+}
